@@ -14,13 +14,31 @@
     <?php include 'include/nav.php'  ?>
     <!-- form ajouter utilisateur -->
     <div class="container">
+        <?php
+           if(isset($_POST['ajouter'])){
+             $login = $_POST['login'];
+             $password = $_POST['password'];
+             if(!empty($login) && !empty($password)){
+                echo "hello $login ur password is $password dont fogot thats!"; 
+             }
+             else{
+                // close php to add html code
+                ?>
+        <div class="alert alert-danger" role="alert">
+            errorrr!
+        </div>
+        <!-- open php again -->
+        <?php 
+           }
+        }
+       ?>
         <form method="post">
             <label class=" form-label">Login</label>
-            <input type="password" class="form-control" name="login">
+            <input type="text" class="form-control" name="login">
 
             <label class=" form-label">Password</label>
             <input type="password" class="form-control" name="password">
-            <input type="submit" value="Ajouter Utilisateur" class="btn btn-primary  my-3">
+            <input type="submit" value="Ajouter Utilisateur" name="ajouter" class="btn btn-primary  my-3">
         </form>
     </div>
 
