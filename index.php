@@ -27,8 +27,10 @@
                 require_once 'include/database.php';
                 $date = date( 'Y-m-d');
                 //pour insertion un nouveau utilisateur
-                 $sqlState = $pdo->prepare(query:'INSERT INTO utilisateur VALUES(null,?,?,?)' );
+                 $sqlState = $pdo->prepare('INSERT INTO utilisateur VALUES(null,?,?,?)' );
                  $sqlState->execute([$login,$password,$date]);
+                 //redirection data to (?)
+                 header('location: connexion.php');
              }
              
              
