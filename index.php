@@ -11,21 +11,32 @@
 
 <body>
     <!-- navbar -->
+    <!-- Appeler le code -->
     <?php include 'include/nav.php'  ?>
     <!-- form ajouter utilisateur -->
-    <div class="container">
+    <div class="container py-2">
         <?php
            if(isset($_POST['ajouter'])){
              $login = $_POST['login'];
              $password = $_POST['password'];
+
+
+             
              if(!empty($login) && !empty($password)){
-                echo "hello $login ur password is $password dont fogot thats!"; 
+                // --- Appeler le code --
+                require_once 'include/database.php';
+                $date = date( 'Y-m-d');
+                //pour insertion un nouveau utilisateur
+                 $sqlState = $pdo->prepare(query:'INSERT INTO utilisateur VALUES(null,?,?,?)' );
+                 $sqlState->execute([$login,$password,$date]);
              }
+             
+             
              else{
                 // close php to add html code
                 ?>
         <div class="alert alert-danger" role="alert">
-            errorrr!
+            Login , password sont obligatoires!
         </div>
         <!-- open php again -->
         <?php 
