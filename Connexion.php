@@ -15,7 +15,6 @@
     <?php include 'include/nav.php'  ?>
     <!-- form ajouter utilisateur -->
     <div class="container py-2">
-        <!-- A container with padding for better layout and styling -->
 
         <?php
     // Check if the form has been submitted
@@ -26,7 +25,7 @@
 
         // Ensure both login and password fields are not empty
         if (!empty($login) && !empty($password)) {
-            // Include the database connection file
+            // Include the database connection file النداء على ملف اتصال قاعدة البيانات
             require_once 'include/database.php';
 
             // Prepare an SQL query to find a user with the provided login and password
@@ -37,17 +36,17 @@
             // Execute the query with the provided login and password values
             $sqlState->execute([$login, $password]);
 
-            // Check if at least one matching row was found
+            // Check if at least one(login/psw) matching row was found
             if ($sqlState->rowCount() >= 1) {
                 // Start a new session
                 session_start();
 
-                // Store the user data in the session variable `$_SESSION['utilisateur']`
+                // Store the user data in the session variable `$_SESSION['utilisateur']` تخزين بيانات المستخدم في متغير
                 $_SESSION['utilisateur'] = $sqlState->fetch();
 
                 // Redirect the user to the admin page
                 header('Location: admin.php');
-                exit(); // Ensure no further code is executed
+                
             } else {
                 // If login or password is incorrect, display an error message
                 ?>

@@ -45,6 +45,7 @@
            }
         }
        ?>
+        <h4>Ajouter Utilisateur</h4>
         <form method="post">
             <label class=" form-label">Login</label>
             <input type="text" class="form-control" name="login">

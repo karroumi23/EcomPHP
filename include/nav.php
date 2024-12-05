@@ -8,10 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Ajouter Utilisateur</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Ajouter Utilisateur</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produits</a>
+                    <a class="nav-link" href="Connexion.php">Connexion</a>
                 </li>
             </ul>
         </div>
