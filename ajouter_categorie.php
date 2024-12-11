@@ -10,22 +10,45 @@
 </head>
 
 <body>
-    <!-- navbar -->
+
     <!-- Appeler le code -->
     <?php include 'include/nav.php'  ?>
-    <!-- form ajouter utilisateur -->
+    <!-- form Ajouter Catégorie -->
     <div class="container py-2">
         <h4>Ajouter Catégorie</h4>
         <?php
-        
-       ?>
-        <form method="post">
-            <label class="form-label"> Login </label>
-            <input type="text" class="form-control" name="login">
+           if(isset($_POST['ajouter'])){
+           $libelle = $_POST['libelle'];
+           $description	=$_POST['description'];
 
-            <label class=" form-label">Password</label>
-            <input type="password" class="form-control" name="password">
-            <input type="submit" value="Ajouter*** Utilisateur" name="ajouter" class="btn btn-primary  my-3">
+           if(!empty($libelle) && !empty($description)){
+               // ---Connect to database(database.php) --
+               require_once 'include/database.php';
+              //pour insertion(للإدراج) un nouveau categorie
+               $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description) VALUES(?,?)' );
+               $sqlState->execute([$libelle,$description]);
+               ?>
+        <div class="alert alert-success" role="alert">
+            la categorie <?php echo $libelle  ?> est bien ajoutée.
+        </div>
+        <?php
+        }else{
+        ?>
+        <div class="alert alert-danger" role="alert">
+            libelle , description sont obligatoires!
+        </div>
+        <?php
+        }
+
+        }
+        ?>
+        <form method="post">
+            <label class="form-label">libelle </label>
+            <input type="text" class="form-control" name="libelle">
+
+            <label class=" form-label">Description </label>
+            <textarea class="form-control" name="description"></textarea>
+            <input type="submit" value="Ajouter catégorie" name="ajouter" class="btn btn-primary  my-3">
         </form>
     </div>
 

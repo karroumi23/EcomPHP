@@ -5,7 +5,7 @@
   if(isset($_SESSION['utilisateur'])){
     $connecte = true;
   }
-  var_dump($connecte);
+
 ?>
 
 
