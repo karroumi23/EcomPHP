@@ -16,6 +16,7 @@
     <!-- form ajouter utilisateur -->
     <div class="container py-2">
         <?php
+            //if click on the button (ajouter)
            if(isset($_POST['ajouter'])){
              $login = $_POST['login'];
              $password = $_POST['password'];
@@ -23,10 +24,11 @@
 
              
              if(!empty($login) && !empty($password)){
-                // --- Appeler le code --
+                // ---Connect to database(database.php) --
                 require_once 'include/database.php';
+                 //récupérer la date 
                 $date = date( 'Y-m-d');
-                //pour insertion un nouveau utilisateur
+                //pour insertion(للإدراج) un nouveau utilisateur
                  $sqlState = $pdo->prepare('INSERT INTO utilisateur VALUES(null,?,?,?)' );
                  $sqlState->execute([$login,$password,$date]);
                  //redirection data to (?)
@@ -47,7 +49,7 @@
        ?>
         <h4>Ajouter Utilisateur</h4>
         <form method="post">
-            <label class=" form-label">Login</label>
+            <label class="form-label"> Login </label>
             <input type="text" class="form-control" name="login">
 
             <label class=" form-label">Password</label>
