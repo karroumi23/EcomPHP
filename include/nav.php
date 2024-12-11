@@ -1,3 +1,14 @@
+<?php 
+  session_start();
+  //Vérifier si l'utilisateur est connecté ou non connecté
+  $connecte = false;
+  if(isset($_SESSION['utilisateur'])){
+    $connecte = true;
+  }
+  var_dump($connecte);
+?>
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Ecommerce</a>
@@ -10,9 +21,28 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Ajouter Utilisateur</a>
                 </li>
+                <?php 
+                  //if utilisateur connecte ...
+                    if($connecte){
+                        ?>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="ajouter_categorie.php">Ajouter Catégorie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="ajouter_produit.php">Ajouter Produit</a>
+                </li>
+                <?php
+                }else{
+                    ?>
+                <!-- if not ... -->
                 <li class="nav-item">
                     <a class="nav-link" href="Connexion.php">Connexion</a>
                 </li>
+                <?php
+                }
+                ?>
+
+
             </ul>
         </div>
     </div>

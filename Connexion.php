@@ -38,9 +38,6 @@
 
             // Check if at least one(login/psw) matching row was found
             if ($sqlState->rowCount() >= 1) {
-                // Start a new session
-                session_start() ;
-
                 // Store the user data in the session variable `$_SESSION['utilisateur']` تخزين بيانات المستخدم في متغير
                 $_SESSION['utilisateur'] = $sqlState->fetch();
 
