@@ -17,16 +17,51 @@
     <div class="container py-2">
         <h4>Ajouter Produit</h4>
         <?php
-          
+        //Sends data(ajouter produit) to the database
+        //if click on the button (ajouter)
+           if(isset($_POST['ajouter'])){
+              $libelle = $_POST['libelle'] ;
+              $prix = $_POST['prix'];
+              $discount = $_POST['discount'];
+              $categorie = $_POST['categorie'];
+              $date = date('Y-m-d');
+              
+              if(!empty($libelle) && !empty($prix) && !empty($categorie)){
+                  // ---Connect to database(database.php) --
+               require_once 'include/database.php';
+               //pour insertion(للإدراج) un nouveau categorie
+                $sqlState = $pdo->prepare('INSERT INTO  produit VALUES(null,?,?,?,?,?)' );
+                $sqlState->execute([$libelle,$prix,$discount,$categorie,$date]);
+         ?>
+        <div class="alert alert-success" role="alert">
+            produit <?php echo $libelle  ?> est bien ajoutée.
+        </div>
+        <?php
+              }else{
+                ?>
+        <div class="alert alert-danger" role="alert">
+            libelle, prix, categorie sont obligatoires!
+        </div>
+        <?php 
+        
+        }
+        
+        }
         ?>
+
+
+
+
+
+
         <form method="post">
             <label class="form-label">Libelle </label>
             <input type="text" class="form-control" name="libelle">
 
             <label class=" form-label">Prix </label>
-            <input type="number" class="form-control" name="prix" min="0">
+            <input type="number" class="form-control" name="prix" step="0.1" min="0">
 
-            <label class=" form-label">Discount </label>
+            <label class=" form-label">Discount (%)</label>
             <input type="number" class="form-control" name="discount" min="0" max="100">
 
             <?php 
@@ -36,7 +71,7 @@
               $categories = $pdo->query('SELECT * FROM categorie')->fetchAll(PDO::FETCH_ASSOC);
               ?>
             <label class="form-label">Categorie</label>
-            <select name="categorie" class="form-control" required>
+            <select name="categorie" class="form-control">
                 <option value="">choisessez une categorie</option>
                 <?PHP
                  // Loop through the categories fetched from the database
