@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="ajouter_produit.php">Ajouter Produit</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="deconnexion.php">Deconnexion </a>
+                </li>
                 <?php
                 }else{
                     ?>
