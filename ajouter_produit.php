@@ -29,6 +29,26 @@
             <label class=" form-label">Discount </label>
             <input type="number" class="form-control" name="discount" min="0" max="100">
 
+            <?php 
+             // ---Connect to database(database.php) --
+               require_once 'include/database.php';
+              //pour insertion(للإدراج) un nouveau (produit)
+              $categories = $pdo->query('SELECT * FROM categorie')->fetchAll(PDO::FETCH_ASSOC);
+              ?>
+            <label class="form-label">Categorie</label>
+            <select name="categorie" class="form-control" required>
+                <option value="">choisessez une categorie</option>
+                <?PHP
+                 // Loop through the categories fetched from the database
+                    foreach($categories as $categorie){
+                // Display each category as an option in the select dropdown
+                     echo "<option value='" . $categorie['id'] . "'>" . htmlspecialchars($categorie['libelle']) . "</option>";
+                    
+                  }
+                ?>
+
+            </select>
+
             <input type="submit" value="Ajouter produit" name="ajouter" class="btn btn-primary  my-3">
         </form>
     </div>
