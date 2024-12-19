@@ -25,6 +25,9 @@
                   //if utilisateur connecte ...
                     if($connecte){
                         ?>
+                        <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="categories.php">Liste des Categories</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="ajouter_categorie.php">Ajouter Catégorie</a>
                 </li>

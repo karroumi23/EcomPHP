@@ -76,9 +76,8 @@
                 <?PHP
                  // Loop through the categories fetched from the database
                     foreach($categories as $categorie){
-                // Display each category as an option in the select dropdown
-                     echo "<option value='" . $categorie['id'] . "'>" . htmlspecialchars($categorie['libelle']) . "</option>";
-                    
+                // Display each category as an option in the select dropdown عرض كل فئة كخيار في القائمة المنسدلة
+                echo "<option value='" . $categorie['id'] . "'>" . $categorie['libelle'] . "</option>";                    
                   }
                 ?>
 

@@ -11,7 +11,6 @@
 
 <body>
     <!-- navbar -->
-    <!-- Appeler le code -->
     <?php include 'include/nav.php'  ?>
     <!-- form ajouter utilisateur -->
     <div class="container py-2">
@@ -63,15 +62,14 @@
     }
     ?>
 
-        <!-- Display the login form -->
-        <h4>Connexion</h4> <!-- Form heading -->
+        <!-- ----------------------------------------------------------------- -->
+        <h4>Connexion</h4>
         <form method="post">
-            <!-- Form uses POST method to submit data securely -->
             <label class="form-label">Login</label>
-            <input type="text" class="form-control" name="login"> <!-- Input for login -->
+            <input type="text" class="form-control" name="login">
 
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" name="password"> <!-- Input for password -->
+            <input type="password" class="form-control" name="password">
 
             <!-- Submit button for the form -->
             <input type="submit" value="Connexion" name="connexion" class="btn btn-primary my-3">

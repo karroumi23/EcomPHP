@@ -21,10 +21,9 @@
              $login = $_POST['login'];
              $password = $_POST['password'];
 
-
              
-             if(!empty($login) && !empty($password)){
-                // ---Connect to database(database.php) --
+               if(!empty($login) && !empty($password)){
+                // ---Connect to database(database.php) النداء على ملف اتصال قاعدة البيانات
                 require_once 'include/database.php';
                  //récupérer la date 
                 $date = date( 'Y-m-d');
@@ -33,10 +32,7 @@
                  $sqlState->execute([$login,$password,$date]);
                  //redirection data to (?)
                  header('location: connexion.php');
-             }
-             
-             
-             else{
+               }else{
                 // close php to add html code
                 ?>
         <div class="alert alert-danger" role="alert">
@@ -47,6 +43,9 @@
            }
         }
        ?>
+
+        <!-- ----------------------------------------------------------------- -->
+
         <h4>Ajouter Utilisateur</h4>
         <form method="post">
             <label class="form-label"> Login </label>
@@ -54,6 +53,7 @@
 
             <label class=" form-label">Password</label>
             <input type="password" class="form-control" name="password">
+
             <input type="submit" value="Ajouter Utilisateur" name="ajouter" class="btn btn-primary  my-3">
         </form>
     </div>
