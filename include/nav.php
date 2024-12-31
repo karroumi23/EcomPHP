@@ -4,10 +4,9 @@
   $connecte = false;
   if(isset($_SESSION['utilisateur'])){
     $connecte = true;
-  }
+  };
 
 ?>
-
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -25,7 +24,7 @@
                   //if utilisateur connecte ...
                     if($connecte){
                         ?>
-                        <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="categories.php">Liste des Categories</a>
                 </li>
                 <li class="nav-item">

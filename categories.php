@@ -15,18 +15,41 @@
     <?php include 'include/nav.php'  ?>
     <!-- form ajouter utilisateur -->
     <div class="container py-2">
-        <?php
-           //...
-       ?>
-    <table class="table table-striped table-hover"> 
-         <tr>
-             <th>#ID</th>
-             <th>Libelle</th>
-             <th>Description</th>
-             <th>Date</th>
-         </tr>
-    </table>
-       
+        <h1 class="text-primary">List Des Categories</h1>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>#ID</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+
+            <!-- navbar -->
+            <!-- Appeler le code -->
+            <?php
+            // Include the database connection file النداء على ملف اتصال قاعدة البيانات
+             require_once 'include/database.php';
+            //(pdo) جلب جميع الصفوف من جدول الفئات في قاعدة البيانات باستخدام 
+            // The fetchAll(PDO::FETCH_ASSOC) method retrieves all results as an associative array
+             $categories = $pdo->query('SELECT * FROM categorie')->fetchAll(PDO::FETCH_ASSOC);
+             foreach($categories as $categorie){
+             ?>
+            <tr>
+                <td><?php echo $categorie['id'] ?></td>
+                <td><?php echo $categorie['libelle'] ?></td>
+                <td><?php echo $categorie['description'] ?></td>
+                <td><?php echo $categorie['date_creation'] ?></td>
+            </tr>
+            <?php
+            }
+            ?>
+        </table>
+
+
+
+
+
+        <a href="ajouter_categorie.php" class="btn btn-primary my-3">Ajouter catégorie</a>
     </div>
 
 

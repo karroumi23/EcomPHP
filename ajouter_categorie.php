@@ -42,12 +42,13 @@
 
         }
         ?>
+        <!--------------------------------------------------  -->
         <form method="post">
             <label class="form-label">libelle </label>
             <input type="text" class="form-control" name="libelle">
-
             <label class=" form-label">Description </label>
             <textarea class="form-control" name="description"></textarea>
+
             <input type="submit" value="Ajouter catégorie" name="ajouter" class="btn btn-primary  my-3">
         </form>
     </div>
