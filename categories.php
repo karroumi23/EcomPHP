@@ -22,6 +22,7 @@
                 <th>Libelle</th>
                 <th>Description</th>
                 <th>Date</th>
+                <th>Operations</th>
             </tr>
 
             <!-- navbar -->
@@ -39,15 +40,16 @@
                 <td><?php echo $categorie['libelle'] ?></td>
                 <td><?php echo $categorie['description'] ?></td>
                 <td><?php echo $categorie['date_creation'] ?></td>
+                <td>
+                    <input type="submit" class="btn btn-primary btn-sm" value="Modifier">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
+
+                </td>
             </tr>
             <?php
             }
             ?>
         </table>
-
-
-
-
 
         <a href="ajouter_categorie.php" class="btn btn-primary my-3">Ajouter catégorie</a>
     </div>
