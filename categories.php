@@ -13,7 +13,7 @@
     <!-- navbar -->
     <!-- Appeler le code -->
     <?php include 'include/nav.php'  ?>
-    <!-- form ajouter utilisateur -->
+    <!-- form display categories -->
     <div class="container py-2">
         <h1 class="text-primary">List Des Categories</h1>
         <table class="table table-striped table-hover">
