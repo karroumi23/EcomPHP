@@ -25,12 +25,11 @@
                 <th>Operations</th>
             </tr>
 
-            <!-- navbar -->
-            <!-- Appeler le code -->
+
             <?php
             // Include the database connection file النداء على ملف اتصال قاعدة البيانات
              require_once 'include/database.php';
-            //(pdo) جلب جميع الصفوف من جدول الفئات في قاعدة البيانات باستخدام 
+            //(pdo) جلب جميع الصفوف من جدول (الفئات) في قاعدة البيانات باستخدام 
             // The fetchAll(PDO::FETCH_ASSOC) method retrieves all results as an associative array
              $categories = $pdo->query('SELECT * FROM categorie')->fetchAll(PDO::FETCH_ASSOC);
              foreach($categories as $categorie){
