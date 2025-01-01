@@ -32,11 +32,7 @@
                //pour insertion(للإدراج) un nouveau categorie
                 $sqlState = $pdo->prepare('INSERT INTO  produit VALUES(null,?,?,?,?,?)' );
                 $sqlState->execute([$libelle,$prix,$discount,$categorie,$date]);
-         ?>
-        <div class="alert alert-success" role="alert">
-            produit <?php echo $libelle  ?> est bien ajoutée.
-        </div>
-        <?php
+                header('location: produits.php');
               }else{
                 ?>
         <div class="alert alert-danger" role="alert">

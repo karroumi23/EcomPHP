@@ -22,7 +22,7 @@
                 <th>Libelle</th>
                 <th>Prix</th>
                 <th>Discount</th>
-                <th>ID-Categorie</th>
+                <th>Categorie</th>
                 <th>Date-Creation</th>
                 <th>Operations</th>
             </tr>
@@ -33,15 +33,15 @@
 
              //(pdo) جلب جميع الصفوف من جدول (الفئات) في قاعدة البيانات باستخدام 
              // The fetchAll(PDO::FETCH_ASSOC) method retrieves all results as an associative array
-              $produits = $pdo->query('SELECT * FROM produit')->fetchAll(PDO::FETCH_ASSOC);
+              $produits = $pdo->query("SELECT produit.*,categorie.libelle as 'categorie_libelle' FROM produit INNER JOIN categorie ON produit.id_categorie = categorie.id")->fetchAll(PDO::FETCH_ASSOC);
               foreach($produits as $produit){
                 ?>
             <tr>
                 <td><?php echo $produit['id'] ?></td>
                 <td><?php echo $produit['libelle'] ?></td>
-                <td><?php echo $produit['prix'] ?></td>
-                <td><?php echo $produit['discount'] ?></td>
-                <td><?php echo $produit['id_categorie'] ?></td>
+                <td><?php echo $produit['prix'] ?> MAD</td>
+                <td><?php echo $produit['discount'] ?> %</td>
+                <td><a href="categories.php"><?php echo $produit['categorie_libelle'] ?></a></td>
                 <td><?php echo $produit['date_creation'] ?></td>
                 <td>
                     <input type="submit" class="btn btn-primary btn-sm" value="Modifier">

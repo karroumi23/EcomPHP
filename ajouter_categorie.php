@@ -27,11 +27,7 @@
               //pour insertion(للإدراج) un nouveau categorie
                $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description) VALUES(?,?)' );
                $sqlState->execute([$libelle,$description]);
-               ?>
-        <div class="alert alert-success" role="alert">
-            la categorie <?php echo $libelle  ?> est bien ajoutée.
-        </div>
-        <?php
+               header('location: categories.php');
         }else{
         ?>
         <div class="alert alert-danger" role="alert">
