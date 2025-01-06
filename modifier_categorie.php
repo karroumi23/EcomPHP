@@ -25,6 +25,30 @@
             $sqlState->execute([$id]);
             
             $category = $sqlState->fetch(PDO::FETCH_ASSOC);
+
+          if(isset($_POST['modifier'])){
+                $libelle     = $_POST['libelle'];
+                $description = $_POST['description'];
+     
+                if(!empty($libelle) && !empty($description)){
+                    
+                   //pour insertion(للإدراج) un nouveau categorie
+                    $sqlState = $pdo->prepare('UPDATE categorie 
+                                                           SET  libelle = ? , 
+                                                                description = ?
+                                                          WHERE  id = ?
+                                                            ' );
+                    $sqlState->execute([$libelle,$description,$id]);
+                    header('location: categories.php');
+          }else{
+             ?>
+        <div class="alert alert-danger" role="alert">
+            libelle , description sont obligatoires!
+        </div>
+        <?php
+             }
+     
+            }
           
         ?>
 
@@ -32,10 +56,10 @@
 
 
 
-        <!--------------------------------------------------  -->
+        <!---------------------------------------------------->
         <form method="post">
-            <label class="form-label">ID </label>
-            <input type="text" class="form-control" name="id" value="<?php echo $category['id'] ?>">
+            <input type="hidden" class="form-control" name="id" value="<?php echo $category['id'] ?>">
+
             <label class="form-label">libelle </label>
             <input type="text" class="form-control" name="libelle" value="<?php echo $category['libelle'] ?>">
 
@@ -43,7 +67,7 @@
             <textarea class="form-control" name="description"><?php echo $category['description'] ?></textarea>
 
 
-            <input type="submit" value="Modifier catégorie" name="ajouter" class="btn btn-primary  my-3">
+            <input type="submit" value="Modifier catégorie" name="modifier" class="btn btn-primary  my-3">
         </form>
     </div>
 
