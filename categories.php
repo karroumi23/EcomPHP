@@ -40,8 +40,11 @@
                 <td><?php echo $categorie['description'] ?></td>
                 <td><?php echo $categorie['date_creation'] ?></td>
                 <td>
-                    <input type="submit" class="btn btn-primary btn-sm" value="Modifier">
-                    <input type="submit" class="btn btn-danger btn-sm" value="Supprimer">
+                    <a href="modifier_categorie.php?id=<?php echo $categorie['id'] ?>"
+                        class="btn  btn-primary btn-sm">Modifier</a>
+                    <!-- i use "onclick" to display alert are u sure u want delete this categorie ?  -->
+                    <a href="supprimer_categorie.php?id=<?php echo $categorie['id'] ?>" class="btn  btn-danger btn-sm"
+                        onclick="return confirm('voulez vous vraiment supprimer la categorie<?php echo $categorie['libelle'] ?> ')">Supprimer</a>
 
                 </td>
             </tr>
@@ -50,7 +53,7 @@
             ?>
         </table>
 
-        <a href="ajouter_categorie.php" class="btn btn-primary my-3">Ajouter catégorie</a>
+        <a href=" ajouter_categorie.php" class="btn btn-primary my-3">Ajouter catégorie</a>
     </div>
 
 
