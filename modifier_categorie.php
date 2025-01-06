@@ -32,13 +32,13 @@
      
                 if(!empty($libelle) && !empty($description)){
                     
-                   //pour insertion(للإدراج) un nouveau categorie
+                   //pour modifier categorie
                     $sqlState = $pdo->prepare('UPDATE categorie 
                                                            SET  libelle = ? , 
                                                                 description = ?
                                                           WHERE  id = ?
                                                             ' );
-                    $sqlState->execute([$libelle,$description,$id]);
+                    $sqlState->execute([$libelle,$description,]);
                     header('location: categories.php');
           }else{
              ?>
@@ -58,7 +58,7 @@
 
         <!---------------------------------------------------->
         <form method="post">
-            <input type="hidden" class="form-control" name="id" value="<?php echo $category['id'] ?>">
+            <input class="form-control" name="id" value="<?php echo $category['id'] ?>">
 
             <label class="form-label">libelle </label>
             <input type="text" class="form-control" name="libelle" value="<?php echo $category['libelle'] ?>">

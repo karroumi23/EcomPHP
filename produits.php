@@ -44,7 +44,8 @@
                 <td><a href="categories.php"><?php echo $produit['categorie_libelle'] ?></a></td>
                 <td><?php echo $produit['date_creation'] ?></td>
                 <td>
-                    <input type="submit" class="btn btn-primary btn-sm" value="Modifier">
+                    <a href="modifier_produit.php?id=<?php echo $produit['id'] ?>"
+                        class="btn  btn-primary btn-sm">Modifier</a>
 
                     <a href="supprimer_produit.php?id=<?php echo $produit['id'] ?>" class="btn  btn-danger btn-sm"
                         onclick="return confirm('voulez vous vraiment supprimer produit<?php echo $produit['libelle'] ?> ')">Supprimer</a>
