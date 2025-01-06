@@ -63,7 +63,7 @@
 
         <!---------------------------------------------------->
         <form method="post">
-            <input class="form-control" name="id" value="<?php echo $produit['id'] ?>">
+            <input type="hidden" class="form-control" name="id" value="<?php echo $produit['id'] ?>">
 
             <label class="form-label">libelle </label>
             <input type="text" class="form-control" name="libelle" value="<?php echo $produit['libelle'] ?>">
