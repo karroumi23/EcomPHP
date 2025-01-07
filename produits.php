@@ -48,7 +48,7 @@
                         class="btn  btn-primary btn-sm">Modifier</a>
 
                     <a href="supprimer_produit.php?id=<?php echo $produit['id'] ?>" class="btn  btn-danger btn-sm"
-                        onclick="return confirm('voulez vous vraiment supprimer produit<?php echo $produit['libelle'] ?> ')">Supprimer</a>
+                        onclick="return confirm('voulez vous vraiment supprimer le produit<?php echo $produit['libelle'] ?> ')">Supprimer</a>
                 </td>
             </tr>
             <?php

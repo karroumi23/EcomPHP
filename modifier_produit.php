@@ -33,13 +33,11 @@
                 $discount     = $_POST['discount'];
                 
                 if(!empty($libelle) && !empty($prix) ){
-                    //pour modifier categorie
-                    $sqlState = $pdo->prepare('UPDATE produit 
-                                                           SET  libelle = ? , 
-                                                                prix = ? ,
-                                                                discount = ?
-                                                          WHERE  id = ?
-                                                            ' );
+                    //pour Modifier les champs
+                    $sqlState = $pdo->prepare('UPDATE produit  SET  libelle = ? , 
+                                                                    prix = ? ,
+                                                                    discount = ?
+                                                             WHERE  id = ? ' );
                     $sqlState->execute([$libelle,$prix,$discount,$id]);
                     header('location: produits.php');                                        
                     
