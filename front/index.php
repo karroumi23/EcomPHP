@@ -28,7 +28,7 @@
             foreach($categories as $categorie){
                 ?>
             <li class="list-group-item">
-                <a href="#" class="btn btn-light">
+                <a href="categorie.php?id=<?php echo $categorie->id ?>" class="btn btn-light">
                     <?php echo $categorie->libelle ?>
                 </a>
             </li>
