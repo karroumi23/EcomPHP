@@ -16,11 +16,26 @@
         <?php
         // Connect to database(database.php) 
         require_once '../include/database.php';
+        //Targeting the categories table from the database
+        $categories = $pdo->query("SELECT * FROM categorie")->fetchAll(PDO::FETCH_OBJ);
+     
           
         ?>
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
+            <?php
+            //using foreach to display categories from data 
+            foreach($categories as $categorie){
+                ?>
+            <li class="list-group-item">
+                <a href="#" class="btn btn-light">
+                    <?php echo $categorie->libelle ?>
+                </a>
+            </li>
+            <?php
+            }
+            ?>
+
         </ul>
 
 
