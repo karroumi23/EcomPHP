@@ -24,6 +24,8 @@
 </head>
 
 <body>
+    <!-- Appeler le code -->
+    <?php include '../include/nav_front.php'  ?>
 
     <div class="container py-2">
         <h4> <?php echo $categorie['libelle'] ?></h4>
