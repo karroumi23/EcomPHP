@@ -7,6 +7,11 @@
         $sqlState->execute([$id]);
         $categorie = $sqlState->fetch(PDO::FETCH_ASSOC);
      
+        //to display produits of the categorie 
+        $sqlState = $pdo->prepare("SELECT * FROM produit WHERE id_categorie=?");
+        $sqlState->execute([$id]);
+        $produits = $sqlState->fetchAll(PDO::FETCH_OBJ);
+
           
         ?>
 
@@ -29,14 +34,30 @@
 
     <div class="container py-2">
         <h4> <?php echo $categorie['libelle'] ?></h4>
+        <div class="container">
+            <div class="row">
+                <!-- add -->
+                <?php
+                   foreach($produits as $produit){
+                    ?>
+                <!-- card -->
+                <div class="card mb-3 col-md-4">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $produit->libelle ?></h5>
+                        <p class="card-text"><?php echo $produit->prix ?>MAD</p>
+                        <p class="card-text"><?php echo $produit->date_creation ?></p>
+                    </div>
+                </div>
+                <?php
+                }
 
-        <ul class="list-group list-group-flush">
+                ?>
 
 
-        </ul>
 
-
-    </div>
+            </div>
+        </div>
 
 
 
