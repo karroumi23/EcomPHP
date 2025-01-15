@@ -16,17 +16,19 @@
     <!-- form Ajouter Catégorie -->
     <div class="container py-2">
         <h4>Ajouter Catégorie</h4>
+
         <?php
            if(isset($_POST['ajouter'])){
            $libelle = $_POST['libelle'];
            $description	=$_POST['description'];
+           $icone = $_POST['icone'];
 
            if(!empty($libelle) && !empty($description)){
                // ---Connect to database(database.php) --
                require_once 'include/database.php';
               //pour insertion(للإدراج) un nouveau categorie
-               $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description) VALUES(?,?)' );
-               $sqlState->execute([$libelle,$description]);
+               $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description,icone) VALUES(?,?,?)' );
+               $sqlState->execute([$libelle,$description,$icone]);
                header('location: categories.php');
         }else{
         ?>
@@ -44,6 +46,9 @@
             <input type="text" class="form-control" name="libelle">
             <label class=" form-label">Description </label>
             <textarea class="form-control" name="description"></textarea>
+            <!-- add icon  -->
+            <label class="form-label">Icone </label>
+            <input type="text" class="form-control" name="icone">
 
             <input type="submit" value="Ajouter catégorie" name="ajouter" class="btn btn-primary  my-3">
         </form>

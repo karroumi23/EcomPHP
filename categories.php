@@ -21,6 +21,7 @@
                 <th>#ID</th>
                 <th>Libelle</th>
                 <th>Description</th>
+                <th>Icone</th>
                 <th>Date</th>
                 <th>Operations</th>
             </tr>
@@ -38,6 +39,7 @@
                 <td><?php echo $categorie['id'] ?></td>
                 <td><?php echo $categorie['libelle'] ?></td>
                 <td><?php echo $categorie['description'] ?></td>
+                <td><?php echo $categorie['icone'] ?></td>
                 <td><?php echo $categorie['date_creation'] ?></td>
                 <td>
                     <a href="modifier_categorie.php?id=<?php echo $categorie['id'] ?>"
