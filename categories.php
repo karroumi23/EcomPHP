@@ -43,7 +43,7 @@
                 <td><?php echo $categorie['id'] ?></td>
                 <td><?php echo $categorie['libelle'] ?></td>
                 <td><?php echo $categorie['description'] ?></td>
-                <td><i class="<?php echo $categorie['icone'] ?> text-primary"></i></td> <!-- add icone -->
+                <td><i class="fa <?php echo $categorie['icone'] ?> "></i></td> <!-- add icone -->
                 <td><?php echo $categorie['date_creation'] ?></td>
                 <td>
                     <a href="modifier_categorie.php?id=<?php echo $categorie['id'] ?>"

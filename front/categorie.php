@@ -38,7 +38,8 @@
     <?php include '../include/nav_front.php'  ?>
 
     <div class="container py-2">
-        <h4> <?php echo $categorie['libelle'] ?></h4>
+        <h4 class="text-primary"> <span class="<?php echo $categorie['icone'] ?> "></span>
+            <?php echo $categorie['libelle'] ?></h4>
 
         <div class="container">
             <div class="row">
@@ -58,6 +59,15 @@
                 </div>
                 <?php
                 }
+                if (empty($produits)) {
+                    ?>
+                <div class="alert alert-info " role="alert">
+                    <h5> Pas de produit</h5>
+                </div>
+                <?php
+
+                }
+
 
                 ?>
             </div>
