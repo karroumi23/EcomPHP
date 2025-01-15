@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- link font-awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Liste des Categories </title>
 </head>
 
@@ -39,7 +43,7 @@
                 <td><?php echo $categorie['id'] ?></td>
                 <td><?php echo $categorie['libelle'] ?></td>
                 <td><?php echo $categorie['description'] ?></td>
-                <td><?php echo $categorie['icone'] ?></td>
+                <td><i class="<?php echo $categorie['icone'] ?> text-primary"></i></td> <!-- add icone -->
                 <td><?php echo $categorie['date_creation'] ?></td>
                 <td>
                     <a href="modifier_categorie.php?id=<?php echo $categorie['id'] ?>"

@@ -21,7 +21,8 @@
            if(isset($_POST['ajouter'])){
            $libelle = $_POST['libelle'];
            $description	=$_POST['description'];
-           $icone = $_POST['icone'];
+           $icone = $_POST['icone'];//  add icone
+           
 
            if(!empty($libelle) && !empty($description)){
                // ---Connect to database(database.php) --
