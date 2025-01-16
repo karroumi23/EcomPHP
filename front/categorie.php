@@ -49,7 +49,8 @@
                     ?>
                 <!-- card -->
                 <div class="card mb-3 col-md-4">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="../upload/produit/<?php echo $produit->image ?>" height="250" class=" card-img-top"
+                        alt="..">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fa-regular fa-credit-card"></i><?php echo $produit->libelle ?>
                         </h5>
