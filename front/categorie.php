@@ -49,10 +49,10 @@
                     ?>
                 <!-- card -->
                 <div class="card mb-3 col-md-4">
-                    <img src="../upload/produit/<?php echo $produit->image ?>" height="250" class=" card-img-top"
+                    <img src="../upload/produit/<?php echo $produit->image ?>" height="180" class=" card-img-top"
                         alt="..">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="fa-regular fa-credit-card"></i><?php echo $produit->libelle ?>
+                        <h5 class="card-title"><?php echo $produit->libelle ?>
                         </h5>
                         <p class="card-text"><?php echo $produit->prix ?>MAD</p>
                         <p class="card-text">Ajoute le : <?php echo $produit->date_creation ?></p>
