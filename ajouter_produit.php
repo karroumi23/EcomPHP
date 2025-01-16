@@ -23,15 +23,30 @@
               $libelle = $_POST['libelle'] ;
               $prix = $_POST['prix'];
               $discount = $_POST['discount'];
+              $description = $_POST['description'];
               $categorie = $_POST['categorie'];
               $date = date('Y-m-d');
-              
+              $filename = "";
+
+              //--------------------START ------UPLOAD IMAGE OF THE PRODUIT -----------------
+            //   (isset)=(!empty)  تعني اذا كان الملف موجود
+            if(isset($_FILES['image'])){              
+                // récupération [name] photo
+               $image = $_FILES['image']['name'];
+               $filename = uniqid() . $image; //uniqid() to avoid repetition of the name
+               
+            // move_uploaded_file()   pour deplacer le fichier (image) 
+               move_uploaded_file($_FILES['image']['tmp_name'],'upload/produit/' . $filename);            
+            }
+            //--------------------END ------UPLOAD IMAGE OF THE PRODUIT ---------------------
+            
+            
               if(!empty($libelle) && !empty($prix) && !empty($categorie)){
                   // ---Connect to database(database.php) --
                require_once 'include/database.php';
                //pour insertion(للإدراج) un nouveau categorie
-                $sqlState = $pdo->prepare('INSERT INTO  produit VALUES(null,?,?,?,?,?)' );
-                $sqlState->execute([$libelle,$prix,$discount,$categorie,$date]);
+                $sqlState = $pdo->prepare('INSERT INTO  produit VALUES(null,?,?,?,?,?,?,?)' );
+                $sqlState->execute([$libelle,$prix,$discount,$categorie,$date,$description,$filename]);
                 header('location: produits.php');
               }else{
                 ?>
@@ -49,7 +64,7 @@
 
 
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <label class="form-label">Libelle </label>
             <input type="text" class="form-control" name="libelle">
 
@@ -58,6 +73,13 @@
 
             <label class=" form-label">Discount (%)</label>
             <input type="number" class="form-control" name="discount" min="0" max="100">
+
+            <label class=" form-label"> Description</label>
+            <textarea class="form-control" name="description"></textarea>
+
+            <label class=" form-label"> Image</label>
+            <input type="file" class="form-control" name="image">
+
 
             <?php 
              // ---Connect to database(database.php) --
@@ -77,6 +99,7 @@
                 ?>
 
             </select>
+
 
             <input type="submit" value="Ajouter produit" name="ajouter" class="btn btn-primary  my-3">
         </form>

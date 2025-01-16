@@ -22,6 +22,7 @@
                 <th>Libelle</th>
                 <th>Prix</th>
                 <th>Discount</th>
+                <th>Description</th>
                 <th>Categorie</th>
                 <th>Date-Creation</th>
                 <th>Operations</th>
@@ -41,6 +42,9 @@
                 <td><?php echo $produit['libelle'] ?></td>
                 <td><?php echo $produit['prix'] ?> MAD</td>
                 <td><?php echo $produit['discount'] ?> %</td>
+                <td><?php echo $produit['description'] ?></td>
+
+
                 <td><a href="categories.php"><?php echo $produit['categorie_libelle'] ?></a></td>
                 <td><?php echo $produit['date_creation'] ?></td>
                 <td>
