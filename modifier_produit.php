@@ -32,15 +32,45 @@
                 $prix     = $_POST['prix'];
                 $discount     = $_POST['discount'];
                 $description  =$_POST['description'];
+                $filename = '';
+
+                //------START ------UPLOAD "new" IMAGE OF THE PRODUIT -->
+              //   (isset)=(!empty)  تعني اذا كان الملف موجود
+              if(!empty($_FILES['image']['name'])){              
+                  // récupération [name] photo
+                 $image = $_FILES['image']['name'];
+                 $filename = uniqid() . $image;
+              // move_uploaded_file()   pour deplacer le fichier (image) 
+                 move_uploaded_file($_FILES['image']['tmp_name'],'upload/produit/' . $filename);            
+              }
+              //--------------------END -------------------------->
+              
                 
                 if(!empty($libelle) && !empty($prix) ){
+                    //عن طريق (filename$) // يمكننا معرفة هل غير الصورة ام لا
+                    if(!empty($filename)){
+                        $query = "UPDATE produit  SET  libelle = ? , 
+                                                       prix = ? ,
+                                                       discount = ?,
+                                                       description = ?,
+                                                       image = ?
+                                                                    
+                                                       WHERE  id = ? ";
                     //pour Modifier les champs
-                    $sqlState = $pdo->prepare('UPDATE produit  SET  libelle = ? , 
-                                                                    prix = ? ,
-                                                                    discount = ?,
-                                                                    description = ?
-                                                             WHERE  id = ? ' );
-                    $sqlState->execute([$libelle,$prix,$discount,$description,$id]);
+                    $sqlState = $pdo->prepare($query );
+                    $updated  = $sqlState->execute([$libelle,$prix,$discount,$description,$filename,$id]);
+                 // if is empty take this 
+                }else{
+                      $query = "UPDATE produit  SET      libelle = ? , 
+                                                       prix = ? ,
+                                                       discount = ?,
+                                                       description = ?
+                                                                                                                           
+                                                       WHERE  id = ?";
+                    $sqlState = $pdo->prepare($query );
+                    $updated  = $sqlState->execute([$libelle,$prix,$discount,$description,$id]);
+                }                                         
+                  
                     header('location: produits.php');                                        
                     
                 }else{
@@ -62,7 +92,7 @@
 
 
         <!---------------------------------------------------->
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <input type="hidden" class="form-control" name="id" value="<?php echo $produit['id'] ?>">
 
             <label class="form-label">libelle </label>
@@ -77,6 +107,10 @@
 
             <label class=" form-label"> Description</label>
             <textarea class="form-control" name="description"><?php echo $produit['description'] ?></textarea>
+
+            <label class=" form-label"> Image</label>
+            <input type="file" class="form-control" name="image">
+            <img class="img img-fluid" src="upload/produit/<?php echo $produit['image'] ?>" width="250"><br>
 
 
             <input type="submit" value="Modifier Produit" name="modifier" class="btn btn-primary  my-3">
