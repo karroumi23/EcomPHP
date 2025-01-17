@@ -26,11 +26,11 @@
               $description = $_POST['description'];
               $categorie = $_POST['categorie'];
               $date = date('Y-m-d');
-              $filename = "";
+              $filename = "produit.png";
 
               //--------------------START ------UPLOAD IMAGE OF THE PRODUIT -----------------
             //   (isset)=(!empty)  تعني اذا كان الملف موجود
-            if(isset($_FILES['image'])){              
+            if(!empty($_FILES['image']['name'])){              
                 // récupération [name] photo
                $image = $_FILES['image']['name'];
                $filename = uniqid() . $image; //uniqid() to avoid repetition of the name
