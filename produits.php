@@ -19,6 +19,7 @@
         <table class="table table-striped table-hover">
             <tr>
                 <th>#ID</th>
+                <th>Image</th>
                 <th>Libelle</th>
                 <th>Prix</th>
                 <th>Discount</th>
@@ -39,6 +40,7 @@
                 ?>
             <tr>
                 <td><?php echo $produit['id'] ?></td>
+                <td><img src="upload/produit/<?php echo $produit['image'] ?>" class="img img-fluid" width="40"></td>
                 <td><?php echo $produit['libelle'] ?></td>
                 <td><?php echo $produit['prix'] ?> MAD</td>
                 <td><?php echo $produit['discount'] ?> %</td>

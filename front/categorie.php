@@ -37,7 +37,7 @@
     <!-- nav-bar -->
     <?php include '../include/nav_front.php'  ?>
 
-    <div class="container py-2">
+    <div class="container py-2 ">
         <h4 class="text-primary"> <span class="<?php echo $categorie['icone'] ?> "></span>
             <?php echo $categorie['libelle'] ?></h4>
 
@@ -48,7 +48,7 @@
                    foreach($produits as $produit){
                     ?>
                 <!-- card -->
-                <div class="card mb-3 col-md-4">
+                <div class="card mb-3 col-md-4 me-2" style="max-width: 18rem;max-height: 19rem">
                     <img src="../upload/produit/<?php echo $produit->image ?>" height="180" class=" card-img-top"
                         alt="..">
                     <div class="card-body">
