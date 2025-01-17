@@ -31,14 +31,16 @@
                 $libelle     = $_POST['libelle'];
                 $prix     = $_POST['prix'];
                 $discount     = $_POST['discount'];
+                $description  =$_POST['description'];
                 
                 if(!empty($libelle) && !empty($prix) ){
                     //pour Modifier les champs
                     $sqlState = $pdo->prepare('UPDATE produit  SET  libelle = ? , 
                                                                     prix = ? ,
-                                                                    discount = ?
+                                                                    discount = ?,
+                                                                    description = ?
                                                              WHERE  id = ? ' );
-                    $sqlState->execute([$libelle,$prix,$discount,$id]);
+                    $sqlState->execute([$libelle,$prix,$discount,$description,$id]);
                     header('location: produits.php');                                        
                     
                 }else{
@@ -72,6 +74,9 @@
 
             <label class=" form-label">Discount </label>
             <textarea class="form-control" name="discount"><?php echo $produit['discount'] ?></textarea>
+
+            <label class=" form-label"> Description</label>
+            <textarea class="form-control" name="description"><?php echo $produit['description'] ?></textarea>
 
 
             <input type="submit" value="Modifier Produit" name="modifier" class="btn btn-primary  my-3">
