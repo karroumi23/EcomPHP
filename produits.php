@@ -16,7 +16,7 @@
     <!-- form display categories -->
     <div class="container py-2">
         <h1 class="text-primary">List Des Produits</h1>
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover border">
             <tr>
                 <th>#ID</th>
                 <th>Image</th>
@@ -38,7 +38,7 @@
               $produits = $pdo->query("SELECT produit.*,categorie.libelle as 'categorie_libelle' FROM produit INNER JOIN categorie ON produit.id_categorie = categorie.id")->fetchAll(PDO::FETCH_ASSOC);
               foreach($produits as $produit){
                 ?>
-            <tr>
+            <tr class="py-3">
                 <td><?php echo $produit['id'] ?></td>
                 <td><img src="upload/produit/<?php echo $produit['image'] ?>" class="img img-fluid" width="40"></td>
                 <td><?php echo $produit['libelle'] ?></td>
@@ -49,13 +49,17 @@
 
                 <td><a href="categories.php"><?php echo $produit['categorie_libelle'] ?></a></td>
                 <td><?php echo $produit['date_creation'] ?></td>
-                <td>
-                    <a href="modifier_produit.php?id=<?php echo $produit['id'] ?>"
-                        class="btn  btn-primary btn-sm">Modifier</a>
+                <td class=" justify-content-between align-items-center">
+                    <a href="modifier_produit.php?id=<?php echo $produit['id']; ?>" class="btn btn-primary btn-sm mx-1">
+                        Modifier
+                    </a>
 
-                    <a href="supprimer_produit.php?id=<?php echo $produit['id'] ?>" class="btn  btn-danger btn-sm"
-                        onclick="return confirm('voulez vous vraiment supprimer le produit<?php echo $produit['libelle'] ?> ')">Supprimer</a>
+                    <a href="supprimer_produit.php?id=<?php echo $produit['id']; ?>" class="btn btn-danger btn-sm mx-1"
+                        onclick="return confirm('Voulez-vous vraiment supprimer le produit <?php echo $produit['libelle']; ?> ?')">
+                        Supprimer
+                    </a>
                 </td>
+
             </tr>
             <?php
                }

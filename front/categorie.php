@@ -49,13 +49,16 @@
                     ?>
                 <!-- card -->
                 <div class="card mb-3 col-md-4 me-2" style="max-width: 18rem;max-height: 19rem">
-                    <img src="../upload/produit/<?php echo $produit->image ?>" height="180" class=" card-img-top"
+                    <img src="../upload/produit/<?php echo $produit->image ?>" height="130" class=" card-img-top"
                         alt="..">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $produit->libelle ?>
                         </h5>
                         <p class="card-text"><?php echo $produit->prix ?>MAD</p>
                         <p class="card-text">Ajoute le : <?php echo $produit->date_creation ?></p>
+                        <a href="produit.php?id=<?php echo $produit->id ?>"
+                            class="btn stretched-link text-primary">Afficher Détails
+                        </a>
                     </div>
                 </div>
                 <?php
