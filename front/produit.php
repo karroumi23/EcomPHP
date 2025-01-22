@@ -51,6 +51,8 @@
                     }
                     ?>
                     <p> <?php echo $produit['description']?> </p>
+                    <h2><?php echo $produit['prix']?> MAD</h2>
+                    <a class="btn btn-primary" href="#">Ajouter au Panier</a>
 
                 </div>
             </div>

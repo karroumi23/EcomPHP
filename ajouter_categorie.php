@@ -22,14 +22,15 @@
            $libelle = $_POST['libelle'];
            $description	=$_POST['description'];
            $icone = $_POST['icone'];//  add icone
+           $date = date('Y-m-d');
            
 
            if(!empty($libelle) && !empty($description)){
                // ---Connect to database(database.php) --
                require_once 'include/database.php';
               //pour insertion(للإدراج) un nouveau categorie
-               $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description,icone) VALUES(?,?,?)' );
-               $sqlState->execute([$libelle,$description,$icone]);
+               $sqlState = $pdo->prepare('INSERT INTO categorie(libelle , description,icone,date_creation) VALUES(?,?,?,?)' );
+               $sqlState->execute([$libelle,$description,$icone,$date]);
                header('location: categories.php');
         }else{
         ?>
