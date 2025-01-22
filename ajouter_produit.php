@@ -19,6 +19,7 @@
         <?php
         //Sends data(ajouter produit) to the database
         //if click on the button (ajouter)
+        
            if(isset($_POST['ajouter'])){
               $libelle = $_POST['libelle'] ;
               $prix = $_POST['prix'];
@@ -65,6 +66,7 @@
 
 
         <form method="post" enctype="multipart/form-data">
+
             <label class="form-label">Libelle </label>
             <input type="text" class="form-control" name="libelle">
 

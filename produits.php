@@ -13,6 +13,7 @@
     <!-- navbar -->
     <!-- Appeler le code -->
     <?php include 'include/nav.php' ?>
+
     <!-- form display categories -->
     <div class="container py-2">
         <h1 class="text-primary">List Des Produits</h1>

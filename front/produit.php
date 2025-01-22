@@ -43,7 +43,21 @@
 
                 <div class="col-md-6">
                     <h1><?php echo $produit['libelle']?></h1>
+                    <h3><span class="badge text-bg-success"><?php //prix
+                         //if there is discount calculate price (PRIX) and display it.
+                        $discount = $produit['discount'];
+                        $prix = $produit['prix'];
+                    
+                       if (!empty($produit['discount'])) {
+                           $total = $prix - ($prix * $discount)/100;
+                           echo $total;
+                       }else{
+                           $total = $prix;
+                           echo $total;
+                             }      ?>,00</span> MAD</h3>
+
                     <?php 
+                    
                         if(!empty($produit['discount'])){
                             ?>
                     <p><span class="badge text-bg-success">- <?php echo $produit['discount']?> %</span></p>
@@ -51,7 +65,6 @@
                     }
                     ?>
                     <p> <?php echo $produit['description']?> </p>
-                    <h2><?php echo $produit['prix']?> MAD</h2>
                     <a class="btn btn-primary" href="#">Ajouter au Panier</a>
 
                 </div>

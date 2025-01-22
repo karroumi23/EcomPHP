@@ -4,7 +4,8 @@
 try {
           //Connect to database 
           require_once 'include/database.php';
-   
+          
+      // le mode de gestion des erreurs 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Script SQL de la migration
