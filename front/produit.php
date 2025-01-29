@@ -6,7 +6,8 @@
         $sqlState = $pdo->prepare("SELECT * FROM produit WHERE id=?");
         $sqlState->execute([$id]);
         $produit = $sqlState->fetch(PDO::FETCH_ASSOC);
-          
+
+           
         ?>
 
 
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title> Categories <?php echo $categorie['libelle'] ?> </title>
+    <title> Categories <?php echo $categorie['libelle'] ?></title>
 </head>
 
 <body>
@@ -44,17 +45,24 @@
                 <div class="col-md-6">
                     <h1><?php echo $produit['libelle']?></h1>
                     <h3><span class="badge text-bg-success"><?php //prix
-                         //if there is discount calculate price (PRIX) and display it.
-                        $discount = $produit['discount'];
-                        $prix = $produit['prix'];
+                           //if there is discount calculate price (PRIX) and display it.
+                            $discount = $produit['discount'];
+                            $prix = $produit['prix'];
                     
-                       if (!empty($produit['discount'])) {
-                           $total = $prix - ($prix * $discount)/100;
-                           echo $total;
-                       }else{
-                           $total = $prix;
-                           echo $total;
-                             }      ?>,00</span> MAD</h3>
+                         if (!empty($produit['discount'])) {
+                            $total = $prix - ($prix * $discount)/100;
+                              echo $total ;
+                           
+                         }else{
+                             $total = $prix;
+                             echo $total;
+                             }      ?>,00</span> MAD
+                        <span class="text-danger fs-6	"><del><?php  
+                                 if (!empty($produit['discount'])){
+                                       echo $prix . ' MAD';
+                                  } ?> </del>
+                        </span>
+                    </h3>
 
                     <?php 
                     

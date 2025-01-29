@@ -4,7 +4,8 @@
 try{
 
        //Connect to database 
-   $pdo = new PDO('mysql:host=localhost;dbname=ecommerce-first', username: 'root',password:'');
+   $pdo = new PDO('mysql:host=localhost;dbname=ecommerce-first', username:'root',password:'');
+   
    
 }
 catch(PDOException $e){
