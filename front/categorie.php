@@ -48,13 +48,46 @@
                    foreach($produits as $produit){
                     ?>
                 <!-- card -->
-                <div class="card mb-3 col-md-4 me-2" style="max-width: 18rem;max-height: 19rem">
-                    <img src="../upload/produit/<?php echo $produit->image ?>" height="130" class=" card-img-top"
+                <div class="card mb-3 col-md-4 me-2" style="max-width: 20rem;max">
+                    <img src="../upload/produit/<?php echo $produit->image ?>" height="170" class=" card-img-top"
                         alt="..">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $produit->libelle ?>
-                        </h5>
-                        <p class="card-text"><?php echo $produit->prix ?>MAD</p>
+                         
+                        <h5 class="card-title"><?php echo $produit->libelle ?></h5>
+                         <!-- ------------------- -->
+
+                         <h3><span class="badge text-bg-success"><?php //prix
+                           //if there is discount calculate price (PRIX) and display it.
+                            $discount = $produit->discount;
+                            $prix = $produit->prix;
+                    
+                         if (!empty($produit->discount)) {
+                            $total = $prix - ($prix * $discount)/100;
+                              echo $total ;
+                           
+                         }else{
+                             $total = $prix;
+                             echo $total;
+                             }      ?>,00</span> MAD <br>
+
+                      
+                    </h3>
+                    <span class="text-danger fs-6	"><del><?php  
+                                 if (!empty($produit->discount)){
+                                       echo $prix . 'MAD' ;
+                                  } ?> </del>
+                         </span>
+                        <?php 
+                    
+                        if(!empty($produit->discount)){
+                            ?>
+                    <span class="badge fs-8" style="background-color:rgb(218, 191, 160); color: #000;"> - <?php echo $produit->discount?> %</span>
+                    <?php
+                    }
+                    ?>
+                         <!-- ------------------- -->
+
+                        
                         <p class="card-text">Ajoute le : <?php echo $produit->date_creation ?></p>
                         <a href="produit.php?id=<?php echo $produit->id ?>"
                             class="btn stretched-link text-primary">Afficher Détails
