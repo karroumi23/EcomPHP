@@ -94,7 +94,7 @@
                     <div  class="card-footer" style="z-index: 5;">
                         <div class="counter d-flex">
                             <button class="btn btn-primary mx-1 counter-plus ">+</button>
-                            <input type="number" name="quantite" id="quantite" value="0">
+                            <input type="number" name="quantite" id="quantite" value="0" min="0">
                             <button class="btn btn-primary mx-1 counter-moins">-</button>
                         </div>
                     </div>
