@@ -73,6 +73,7 @@
                     }
                     ?>
                     <p> <?php echo $produit['description']?> </p>
+                    <p class="card-text">Ajoute le : <?php echo $produit['date_creation'] ?></p>
                     <a class="btn btn-primary" href="#">Ajouter au Panier</a>
 
                 </div>

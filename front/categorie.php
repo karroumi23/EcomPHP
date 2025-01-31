@@ -47,7 +47,7 @@
                 <?php
                    foreach($produits as $produit){
                     ?>
-                <!-- card -->
+                <!----------card -->
                 <div class="card mb-3 col-md-4 me-2" style="max-width: 20rem;max">
                     <img src="../upload/produit/<?php echo $produit->image ?>" height="170" class=" card-img-top"
                         alt="..">
@@ -85,13 +85,18 @@
                     <?php
                     }
                     ?>
-                         <!-- ------------------- -->
-
-                        
-                        <p class="card-text">Ajoute le : <?php echo $produit->date_creation ?></p>
+                         <!-- --------link (Afficher Détails)----------- -->                       
                         <a href="produit.php?id=<?php echo $produit->id ?>"
                             class="btn stretched-link text-primary">Afficher Détails
                         </a>
+                    </div>
+                    <!-------------------- quantity of product -->
+                    <div  class="card-footer" style="z-index: 5;">
+                        <div class="counter d-flex">
+                            <button class="btn btn-primary mx-1 counter-plus ">+</button>
+                            <input type="number" name="quantite" id="quantite" value="0">
+                            <button class="btn btn-primary mx-1 counter-moins">-</button>
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -104,18 +109,18 @@
                 <?php
 
                 }
-
-
                 ?>
             </div>
         </div>
     </div>
 
 
-
-
-
-
+<!-- jQuery Script  -->
+<script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous">
+    </script>
+<!-- javascript Script  -->
+<script src="../assets/js/produit/counter.js"></script>
 </body>
-
 </html>
