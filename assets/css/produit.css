@@ -1,0 +1,8 @@
+#quantite{
+    width: 4rem;
+}
+.card-footer{
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}

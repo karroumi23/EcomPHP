@@ -23,9 +23,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+     <link rel="stylesheet" href="/assets/css/produit.css">
+    <!-- script bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- link font-awsome -->
+    <!-- script font-awsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -91,12 +94,9 @@
                         </a>
                     </div>
                     <!-------------------- quantity of product -->
-                    <div  class="card-footer" style="z-index: 5;">
-                        <div class="counter d-flex">
-                            <button class="btn btn-primary mx-1 counter-plus ">+</button>
-                            <input type="number" name="quantite" id="quantite" value="0" min="0">
-                            <button class="btn btn-primary mx-1 counter-moins">-</button>
-                        </div>
+                    <div  class="card-footer" >
+                        
+                        <?php include '../include/front/counter.php'?>
                     </div>
                 </div>
                 <?php
