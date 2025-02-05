@@ -6,6 +6,6 @@
   if(!empty($id) && !empty($qty)){
     
  }else{
-   
+    header("location: produit.php?id=$id");
  }
 ?>
