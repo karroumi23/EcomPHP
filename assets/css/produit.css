@@ -1,8 +1,8 @@
 #quantite{
-    width: 4rem;
+    width: 8rem;
 }
 .card-footer{
     display: flex;
     justify-content: center;
-    z-index: 5;
+    z-index: 100;
 }

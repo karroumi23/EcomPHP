@@ -10,14 +10,34 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Liste des Categories</a>
                 </li>
-
-
-
-
-
-
-
             </ul>
         </div>
+
+        <a href="#" class="cart-link"> <i class="fa-solid fa-cart-shopping"></i> Panier</a>
+            <style>
+        .cart-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-link:hover {
+            background-color: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        .cart-link i {
+            font-size: 20px;
+        }
+        </style>
     </div>
 </nav>

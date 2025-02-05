@@ -24,7 +24,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
-     <link rel="stylesheet" href="/assets/css/produit.css">
+   
+    <link rel="stylesheet" href="../assets/css/produit.css">
+
     <!-- script bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -49,9 +51,10 @@
                 <!-- using LOOP(foreach) to dispay produits -->
                 <?php
                    foreach($produits as $produit){
+                    $idProduit = $produit->id;
                     ?>
                 <!----------card -->
-                <div class="card mb-3 col-md-4 me-2" style="max-width: 20rem;max">
+                <div class="card mb-3 col-md-4 me-2" style="max-width: 20rem">
                     <img src="../upload/produit/<?php echo $produit->image ?>" height="170" class=" card-img-top"
                         alt="..">
                     <div class="card-body">
@@ -89,15 +92,16 @@
                     }
                     ?>
                          <!-- --------link (Afficher Détails)----------- -->                       
-                        <a href="produit.php?id=<?php echo $produit->id ?>"
+                        <a href="produit.php?id=<?php echo $idProduit ?>"
                             class="btn stretched-link text-primary">Afficher Détails
                         </a>
                     </div>
                     <!-------------------- quantity of product -->
-                    <div  class="card-footer" >
-                        
+                    <div  class="card-footer"  >
+                                         
                         <?php include '../include/front/counter.php'?>
                     </div>
+                   
                 </div>
                 <?php
                 }
@@ -115,12 +119,12 @@
     </div>
 
 
-<!-- jQuery Script  -->
-<script src="https://code.jquery.com/jquery-3.7.1.js" 
-    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-      crossorigin="anonymous">
-    </script>
-<!-- javascript Script  -->
-<script src="../assets/js/produit/counter.js"></script>
+    <!-- jQuery Script  -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+          integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+          crossorigin="anonymous">
+      </script>
+       <!-- script javascript -->
+   <script src="../assets/js/produit/counter.js"></script>
 </body>
 </html>

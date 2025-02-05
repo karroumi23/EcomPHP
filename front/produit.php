@@ -7,7 +7,7 @@
         $sqlState->execute([$id]);
         $produit = $sqlState->fetch(PDO::FETCH_ASSOC);
 
-           
+
         ?>
 
 
@@ -55,11 +55,11 @@
                            //if there is discount calculate price (PRIX) and display it.
                             $discount = $produit['discount'];
                             $prix = $produit['prix'];
-                    
+
                          if (!empty($produit['discount'])) {
                             $total = $prix - ($prix * $discount)/100;
                               echo $total ;
-                           
+
                          }else{
                              $total = $prix;
                              echo $total;
@@ -72,7 +72,7 @@
                     </h3>
 
                     <?php 
-                    
+
                         if(!empty($produit['discount'])){
                             ?>
                     <p><span class="badge text-bg-success">- <?php echo $produit['discount']?> %</span></p>
@@ -95,7 +95,5 @@
 
 
 
-
+    <script src="../assets/js/produit/counter.js"></script>
 </body>
-
-</html>
