@@ -1,4 +1,6 @@
 <?php
+session_start();//لتخزين البيانات
+
         // Connect to database(database.php) 
         require_once '../include/database.php';
         $id = $_GET['id'];
@@ -55,6 +57,7 @@
                            //if there is discount calculate price (PRIX) and display it.
                             $discount = $produit['discount'];
                             $prix = $produit['prix'];
+                            
 
                          if (!empty($produit['discount'])) {
                             $total = $prix - ($prix * $discount)/100;
@@ -82,7 +85,11 @@
                     <p> <?php echo $produit['description']?> </p>
                     <p class="card-text">Ajoute le : <?php echo $produit['date_creation'] ?></p>
                     <hr>
-                         <?php include '../include/front/counter.php' ?>
+                         <?php 
+                           //call the counter
+                           $idProduit = $produit['id'];  
+                           include '../include/front/counter.php' 
+                         ?>
                     <hr>
                     <a class="btn btn-primary" href="#">Ajouter au Panier</a>
 
