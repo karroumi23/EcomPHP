@@ -15,7 +15,11 @@
 
 <body>
     <!-- Appeler le code -->
-    <?php include '../include/nav_front.php'  ?>
+    <?php 
+       session_start(); // to display all things from another pages 
+       include '../include/nav_front.php' //call navbar
+    ?>
+    
 
     <div class="container py-2">
         <h4 class="text-primary"><i class="fa-solid fa-list"></i> Liste des Categories</h4>
@@ -24,7 +28,7 @@
         require_once '../include/database.php';
         //Targeting the categories table from the database
         $categories = $pdo->query("SELECT * FROM categorie")->fetchAll(PDO::FETCH_OBJ);
-     
+        
           
         ?>
 

@@ -2,6 +2,7 @@
     
 session_start(); //لتخزين البيانات
 
+
         // Connect to database(database.php) 
         require_once '../include/database.php';
         $id = $_GET['id'];

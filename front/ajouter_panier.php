@@ -16,9 +16,16 @@ if(!isset($_SESSION['utilisateur'])){
       //إذا لم يكن لدى المستخدم عربة ، قم بإنشاء مصفوفة فارغة له
       if(!isset($_SESSION['panier'][$idUtilisateur])){
          $_SESSION['panier'][$idUtilisateur] = [];
-      }
-      //Adds the product with the quantity to the panier.
-      $_SESSION['panier'][$idUtilisateur][$id] = $qty;
+         }
+
+      if($qty == 0){
+         //unset()removes it from memory,
+          unset($_SESSION['panier'][$idUtilisateur][$id]);
+      }else{
+           //Adds the product with the quantity to the panier.
+           $_SESSION['panier'][$idUtilisateur][$id] = $qty;
+         }
+     
 
     header("location: produit.php?id=$id");
 
