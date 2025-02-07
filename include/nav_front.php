@@ -12,8 +12,12 @@
                 </li>
             </ul>
         </div>
-
-        <a href="#" class="cart-link"> <i class="fa-solid fa-cart-shopping"></i> Panier</a>
+         
+         <?php
+             //to display the number of items in the panier 
+             $idUtilisateur = $_SESSION['utilisateur']['id'];
+         ?>
+        <a href="#" class="cart-link"> <i class="fa-solid fa-cart-shopping"></i> Panier(<?php echo count($_SESSION['panier'][$idUtilisateur]) ?>)</a>
             <style>
         .cart-link {
             text-decoration: none;
