@@ -38,14 +38,61 @@
         <div class="container">
             <div class="row">
                 <?php
+                     
+                     
+
                    $idUtilisateur = $_SESSION['utilisateur']['id'];
-                   var_dump($_SESSION['panier'][$idUtilisateur]);
+                   $panier = $_SESSION['panier'][$idUtilisateur];
+                   $idProduits = array_keys($panier);
+                   $idProduits = implode(',',$idProduits);
+                   $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+                   if(empty($panier)){
+                    ?>
+                     <div class="alert alert-warning" role="alert">
+                         votre panier est vide!
+                     </div>
+                    <?php
+                   }else{
+                      ?>
+                      <table class="table">
+                        <thead>
+                            <tr>
+                             <th scope="col">#</th>
+                             <th scope="col">Image</th>
+                             <th scope="col">Libelle</th>
+                             <th scope="col">Quantité</th>
+                             <th scope="col">Operation</th>
+                            </tr>        
+                        </thead>
+                        <?php 
+                           foreach($produits as $produit){
+                             ?>
+                               <tr>
+                                  <td><?php echo $produit['id'] ?></td>
+                                  <td ><img src="../upload/produit/<?php echo $produit['image'] ?>" class="img img-fluid" width="40"></td>
+                                  <td><?php echo $produit['libelle'] ?></td>
+                                  <td><?php echo $panier[$produit['id']] ?></td>
+                               </tr>
+                             <?php
+                                
+                           }
+                        ?>
+
+                     
+                      </table>
+                      <?php
+                    
+                    }
                 ?>
-                
             </div>
         </div>
     </div>
-
+                
+                
+            
 
     <!-- jQuery Script  -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" 
