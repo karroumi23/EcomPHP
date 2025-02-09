@@ -26,8 +26,8 @@ if(!isset($_SESSION['utilisateur'])){
            $_SESSION['panier'][$idUtilisateur][$id] = $qty;
          }
      
-
-    header("location: produit.php?id=$id");
+     //to stay at the same page when i click to modify / ajouter  
+    header("location:".$_SERVER['HTTP_REFERER']); 
 
 ?>
 

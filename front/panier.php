@@ -64,11 +64,17 @@
                              <th scope="col">Image</th>
                              <th scope="col">Libelle</th>
                              <th scope="col">Quantité</th>
-                             <th scope="col">Operation</th>
+                             <th scope="col">Prix</th>
+                             <th scope="col">Prix Total</th>
                             </tr>        
                         </thead>
                         <?php 
+                          $total = 0;
                            foreach($produits as $produit){
+                            $idProduit = $produit['id']; //declerit idproduit in this page
+                            $totalProduit = $produit['prix'] * $panier[$idProduit]; //to calc total price for every produit
+                            $total += $totalProduit; // to calc last total
+
                              ?>
                                <tr>
                                   <td><?php echo $produit['id'] ?></td>
@@ -78,11 +84,19 @@
                                              include '../include/front/counter.php' 
                                        ?>
                                   </td>
+                                  <td><?php echo $produit['prix'] ?> MAD</td>
+                                  <td ><?php echo $totalProduit?> MAD </td>
                                </tr>
                              <?php
                                 
                            }
                         ?>
+                        <tfoot>
+                            <tr>
+                              <td colspan="5" align="right"><strong>Total</strong></td>  
+                              <td class="bg-success" ><?php echo $total;?> MAD </td>
+                            </tr>
+                        </tfoot>
 
                      
                       </table>
