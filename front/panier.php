@@ -74,7 +74,10 @@
                                   <td><?php echo $produit['id'] ?></td>
                                   <td ><img src="../upload/produit/<?php echo $produit['image'] ?>" class="img img-fluid" width="40"></td>
                                   <td><?php echo $produit['libelle'] ?></td>
-                                  <td><?php echo $panier[$produit['id']] ?></td>
+                                  <td><?php  $idProduit = $produit['id'];
+                                             include '../include/front/counter.php' 
+                                       ?>
+                                  </td>
                                </tr>
                              <?php
                                 
