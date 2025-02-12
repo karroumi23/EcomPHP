@@ -15,12 +15,29 @@
             </ul>
         </div>
          
-         <?php
-             //to display the number of items in the panier 
-             $idUtilisateur = $_SESSION['utilisateur']['id'];
-         ?>
-        <a href="panier.php" class="cart-link"> <i class="fa-solid fa-cart-shopping"></i> Panier(<?php echo count($_SESSION['panier'][$idUtilisateur]) ?>)</a>
-            <style>
+        <?php
+           // Get user ID
+           $idUtilisateur = $_SESSION['utilisateur']['id'] ?? null;
+
+           // Initialize the panier array if not set
+           //check if the array is set before counting it.
+           if (!isset($_SESSION['panier'][$idUtilisateur])) {
+           $_SESSION['panier'][$idUtilisateur] = [];
+           }
+
+           // Count the number of items in the panier safely
+           //Avoid Undefined array key and TypeError by using isset().
+           //الآن، سيظهر عدد سلة التسوق الخاصة بك دائمًا "0" إذا كانت فارغة بدلاً من إرسال خطأ
+           $panierCount = isset($_SESSION['panier'][$idUtilisateur]) ? count($_SESSION['panier'][$idUtilisateur]) : 0;
+        ?>
+       <a href="panier.php" class="cart-link">
+          <i class="fa-solid fa-cart-shopping"></i> Panier(<?php echo $panierCount; ?>)
+       </a>
+  
+           
+       
+           
+           <style>
         .cart-link {
             text-decoration: none;
             color: #333;

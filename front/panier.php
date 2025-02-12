@@ -1,8 +1,8 @@
 <?php
     
-     session_start(); //لتخزين البيانات
-     // Connect to database(database.php) 
-    require_once '../include/database.php';         
+    ob_start(); // Start output buffering 
+    session_start();
+    require_once '../include/database.php';
 ?>
 
 
@@ -43,9 +43,7 @@
 
                    $idUtilisateur = $_SESSION['utilisateur']['id'];
                    $panier = $_SESSION['panier'][$idUtilisateur];
-                   $idProduits = array_keys($panier);
-                   $idProduits = implode(',',$idProduits);
-                   $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
+                   
 
 
 
@@ -56,6 +54,9 @@
                      </div>
                     <?php
                    }else{
+                    $idProduits = array_keys($panier);
+                    $idProduits = implode(',',$idProduits);
+                    $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
                       ?>
                       <table class="table">
                         <thead>
@@ -94,7 +95,25 @@
                         <tfoot>
                             <tr>
                               <td colspan="5" align="right"><strong>Total</strong></td>  
-                              <td class="bg-success" ><?php echo $total;?> MAD </td>
+                              <td class="bg-warning" ><?php echo $total;?> MAD </td>
+                            </tr>
+                            <tr>
+                               <td colspan="6" align="right">
+                                   <?php
+                                       if (isset($_POST['vider'])) {
+                                        $_SESSION['panier'][$idUtilisateur] = [];
+                                        header('Location: panier.php');
+                                        exit(); // Stop further execution
+                                    }
+                                    ?>
+                                 <form method="post">
+                                    <input type="submit" class="btn btn-success" name="valider" value="Valider la commande">
+                                    
+                                    <input type="submit" class="btn btn-danger" name="vider" value="Vider le panier"  onclick="return confirm('Voulez-vous vraiment vider le panier')">
+
+                                 </form> 
+                               </td>  
+
                             </tr>
                         </tfoot>
 

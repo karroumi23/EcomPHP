@@ -21,7 +21,17 @@
       <input type="hidden" name="id" value="<?php echo $idProduit ?>">
       <input type="number" name="quantite" id="quantite" value="<?php echo $qty ?>"  min="0">
       <button class="btn btn-primary mx-1 counter-plus" onclick="return false;">+</button>
-      <input type="submit" name="ajouter" value="<?php echo $button?>" class="btn btn-success" > 
+      <input type="submit" class="btn btn-success" name="ajouter" value="<?php echo $button?>"  > 
+      <?php
+      
+        if($qty !== 0){
+          ?>
+            <input type="submit" formaction="supprimer_panier.php" class="btn btn-danger"  name="supprimer" value="Supprimer"  > 
+
+          <?php
+           
+        }
+      ?>
     </form>
      </div>
 
