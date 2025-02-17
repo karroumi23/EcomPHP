@@ -33,7 +33,23 @@
     <?php include '../include/nav_front.php'  ?>
 
     <div class="container py-2 ">
-        <h4 class="text-primary"> Panier</h4>
+        <h4 class="text-primary"> Panier           
+           (<?php // pour afficher le numbre de produit dans le panier
+             // Get user ID
+             $idUtilisateur = $_SESSION['utilisateur']['id'] ?? null;
+             // Initialize the panier array if not set
+             //check if the array is set before counting it.
+             if (!isset($_SESSION['panier'][$idUtilisateur])) {
+             $_SESSION['panier'][$idUtilisateur] = [];
+              }
+             // Count the number of items in the panier safely
+             //Avoid Undefined array key and TypeError by using isset().
+             //الآن، سيظهر عدد سلة التسوق الخاصة بك دائمًا "0" إذا كانت فارغة بدلاً من إرسال خطأ
+             $panierCount = isset($_SESSION['panier'][$idUtilisateur]) ? count($_SESSION['panier'][$idUtilisateur]) : 0;
+             echo $panierCount;
+        ?>)
+       
+        </h4>
 
         <div class="container">
             <div class="row">
