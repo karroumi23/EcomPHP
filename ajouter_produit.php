@@ -74,7 +74,7 @@
             <input type="number" class="form-control" name="prix" step="0.1" min="0">
 
             <label class=" form-label">Discount (%)</label>
-            <input type="number" class="form-control" name="discount" min="0" max="100">
+            <input type="number" class="form-control" name="discount" value="0" min="0" max="100">
 
             <label class=" form-label"> Description</label>
             <textarea class="form-control" name="description"></textarea>

@@ -20,6 +20,7 @@ try {
       `image` varchar(255) NOT NULL,
       PRIMARY KEY (`id`)
     );
+    
 
     INSERT INTO `produit` (`id`, `libelle`, `prix`, `discount`, `id_categorie`, `date_creation`, `description`, `image`) VALUES
     (1, 'tomate', 3, 0, 1, '2025-01-21', 'origine marocaine', '678f7da099021678a76a31d990Tomatoes.jpg'),
