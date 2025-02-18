@@ -33,6 +33,60 @@
     <?php include '../include/nav_front.php'  ?>
 
     <div class="container py-2 ">
+         
+                 <?php
+                    // Check if the "vider" (empty cart) button is clicked
+                    if (isset($_POST['vider'])) {
+                    // Clear the user's cart by resetting their session array
+                    $_SESSION['panier'][$idUtilisateur] = [];
+                    // Redirect to the cart page to reflect the changes
+                    header('Location: panier.php');
+                    exit(); // Stop further execution after the redirect
+                   }
+                    $idUtilisateur = $_SESSION['utilisateur']['id'];
+                    $panier = $_SESSION['panier'][$idUtilisateur];
+                   if(!empty($panier)){
+
+                    $idProduits = array_keys($panier);
+                    $idProduits = implode(',',$idProduits);
+                    $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
+ 
+                   }
+
+                     //when the user click to button valider la commandes 
+                   if(isset($_POST['valider'])){
+                     $sql = '';
+                     $total=0;
+                     $prixProduits = [];
+                    
+                      foreach($produits as $produit){
+                         $idProduit = $produit['id'];
+                         $qty = $panier[$idProduit];
+                         $prix = $produit['prix'];
+                         $total += $qty*$prix ;
+                         $prixProduits[$idProduit]= [
+                                'id' => $idProduit,
+                                'prix' => $prix,
+                                'total' => $qty*$prix,
+                                'qty' => $qty
+                          ];
+                        
+                        
+                         }
+                      //send data to the database($idUtilisateur,$total) commande table 
+                     $sqlStateCommande = $pdo->prepare('INSERT INTO commande(id_client,total) VALUES(?,?)');
+                     $sqlStateCommande->execute([$idUtilisateur,$total]); 
+                     $idCommande = $pdo->lastInsertId();
+                     foreach($prixProduits as $produit){    
+                        $sqlState = $pdo->prepare('INSERT INTO ligne_commande(id_produit, id_commande, prix, quantite) VALUES(?, ?, ?, ?)');
+                        $sqlState->execute([$produit['id'], $idCommande, $produit['prix'], $produit['qty']]);
+                    }
+                    
+                     
+                   }
+                 ?>
+         
+
         <h4 class="text-primary"> Panier           
            (<?php // pour afficher le numbre de produit dans le panier
              // Get user ID
@@ -54,14 +108,6 @@
         <div class="container">
             <div class="row">
                 <?php
-                     
-                     
-
-                   $idUtilisateur = $_SESSION['utilisateur']['id'];
-                   $panier = $_SESSION['panier'][$idUtilisateur];
-                   
-
-
 
                    if(empty($panier)){
                     ?>
@@ -70,10 +116,7 @@
                      </div>
                     <?php
                    }else{
-                    $idProduits = array_keys($panier);
-                    $idProduits = implode(',',$idProduits);
-                    $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
-                      ?>
+                     ?>
                       <table class="table">
                         <thead>
                             <tr>
@@ -108,30 +151,26 @@
                                 
                            }
                         ?>
-                        <tfoot>
-                            <tr>
-                              <td colspan="5" align="right"><strong>Total</strong></td>  
-                              <td class="bg-warning" ><?php echo $total;?> MAD </td>
-                            </tr>
-                            <tr>
-                               <td colspan="6" align="right">
-                                   <?php
-                                       if (isset($_POST['vider'])) {
-                                        $_SESSION['panier'][$idUtilisateur] = [];
-                                        header('Location: panier.php');
-                                        exit(); // Stop further execution
-                                    }
-                                    ?>
-                                 <form method="post">
-                                    <input type="submit" class="btn btn-success" name="valider" value="Valider la commande">
-                                    
-                                    <input type="submit" class="btn btn-danger" name="vider" value="Vider le panier"  onclick="return confirm('Voulez-vous vraiment vider le panier')">
-
-                                 </form> 
-                               </td>  
-
-                            </tr>
-                        </tfoot>
+         <tfoot>
+             <tr>
+               <!-- Display the total amount -->
+               <td colspan="5" align="right"><strong>Total</strong></td>  
+               <td class="bg-warning"><?php echo $total;?> MAD </td>
+            </tr>
+            <tr>
+               <td colspan="6" align="right">
+                     <!-- Form for validating or emptying the cart -->
+                   <form method="post">
+                     <!-- Submit button to validate the order -->
+                    <input type="submit" class="btn btn-success" name="valider" value="Valider la commande"
+                            onclick="return confirm('Do you want to validate your orders?')">
+                     <!-- Submit button to empty the cart with a confirmation prompt -->
+                    <input type="submit" class="btn btn-danger" name="vider" value="Vider le panier"  
+                       onclick="return confirm('Voulez-vous vraiment vider le panier ?')">
+                   </form> 
+                </td>  
+            </tr>
+        </tfoot>
 
                      
                       </table>

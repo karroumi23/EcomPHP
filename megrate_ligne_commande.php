@@ -15,11 +15,16 @@ try {
     CREATE TABLE IF NOT EXISTS `ligne_commande` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `id_produit` INT NOT NULL,
+      `id_commande` INT NOT NULL,
       `prix` DECIMAL(10,2) NOT NULL,
       `quantite` INT NOT NULL,
       `total` DECIMAL(10,2) GENERATED ALWAYS AS (prix * quantite) STORED,
-      PRIMARY KEY (`id`)
-    );";
+      PRIMARY KEY (`id`),
+      FOREIGN KEY (`id_produit`) REFERENCES `produit`(`id`) ON DELETE CASCADE,
+      FOREIGN KEY (`id_commande`) REFERENCES `commande`(`id`) ON DELETE CASCADE
+    ) ENGINE=InnoDB;
+";
+
 
     // Execute the migration
     $pdo->exec($sql);
