@@ -52,39 +52,75 @@
                     $produits = $pdo->query("SELECT * FROM produit WHERE id IN($idProduits)")->fetchAll(PDO::FETCH_ASSOC);
  
                    }
-
-                     //when the user click to button valider la commandes 
-                   if(isset($_POST['valider'])){
-                     $sql = '';
-                     $total=0;
-                     $prixProduits = [];
-                    
-                      foreach($produits as $produit){
-                         $idProduit = $produit['id'];
-                         $qty = $panier[$idProduit];
-                         $prix = $produit['prix'];
-                         $total += $qty*$prix ;
-                         $prixProduits[$idProduit]= [
-                                'id' => $idProduit,
-                                'prix' => $prix,
-                                'total' => $qty*$prix,
-                                'qty' => $qty
-                          ];
-                        
-                        
-                         }
-                      //send data to the database($idUtilisateur,$total) commande table 
-                     $sqlStateCommande = $pdo->prepare('INSERT INTO commande(id_client,total) VALUES(?,?)');
-                     $sqlStateCommande->execute([$idUtilisateur,$total]); 
-                     $idCommande = $pdo->lastInsertId();
-                     foreach($prixProduits as $produit){    
-                        $sqlState = $pdo->prepare('INSERT INTO ligne_commande(id_produit, id_commande, prix, quantite) VALUES(?, ?, ?, ?)');
-                        $sqlState->execute([$produit['id'], $idCommande, $produit['prix'], $produit['qty']]);
-                    }
-                    
-                     
-                   }
+                    // ---------------------------------------------------------------------
+                    if (isset($_POST['valider'])) {
+                      $total = 0;
+                      $values = [];
+                      $params = [];
+                  
+                      // Calcul du total et préparation des valeurs des produits
+                      foreach ($produits as $produit) {
+                          $idProduit = $produit['id'];
+                          $qty = $panier[$idProduit];
+                          $prix = $produit['prix'];
+                          $total += $qty * $prix;
+                      }
+                  
+                      // ✅ Insérer la commande avant d'utiliser $idCommande
+                      $sqlStateCommande = $pdo->prepare('INSERT INTO commande (id_client, total) VALUES (?, ?)');
+                      $insertedCommande = $sqlStateCommande->execute([$idUtilisateur, $total]);
+                  
+                      if ($insertedCommande) {
+                          $idCommande = $pdo->lastInsertId(); // ✅ Récupérer l'ID de la commande
+                      } else {
+                          die('Erreur lors de l\'insertion de la commande');
+                      }
+                  
+                      if (!$idCommande) {
+                          die('Erreur: ID de commande non récupéré');
+                      }
+                  
+                      // ✅ Maintenant, on peut préparer l'insertion des lignes de commande
+                      $sql = 'INSERT INTO ligne_commande (id_produit, id_commande, prix, quantite) VALUES ';
+                      
+                      foreach ($produits as $index => $produit) {
+                          $idProduit = $produit['id'];
+                          $qty = $panier[$idProduit];
+                          $prix = $produit['prix'];
+                  
+                          // Ajouter la structure SQL pour chaque produit
+                          $values[] = "(:id$index, :idCommande, :prix$index, :qty$index)";
+                          
+                          // Ajouter les valeurs associées aux paramètres
+                          $params[":id$index"] = $idProduit;
+                          $params[":prix$index"] = $prix;
+                          $params[":qty$index"] = $qty;
+                      }
+                  
+                      // Fusionner les valeurs dans la requête SQL
+                      $sql .= implode(', ', $values);
+                      
+                      // ✅ Associer l'ID de la commande après son insertion
+                      $params[":idCommande"] = $idCommande;
+                  
+                      // Préparer et exécuter la requête
+                      $sqlState = $pdo->prepare($sql);
+                      $inserted = $sqlState->execute($params);
+                  
+                      if ($inserted) {
+                          $_SESSION['panier'][$idUtilisateur] = [];
+                          header('location: panier.php?success=true&total=' . $total);
+                          exit();
+                      } else {
+                          die('Erreur lors de l\'insertion des lignes de commande');
+                      }
+                  }
+                  
+                
+                
+                   
                  ?>
+                 
          
 
         <h4 class="text-primary"> Panier           
