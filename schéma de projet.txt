@@ -1,0 +1,23 @@
+       
+          ----------------------------------------project ecommerce-data-php ----------------------------------------
+    
+
+
+
+///////////////////( back office ) ///////////////////
+
+1- création page pour créer un compte d'inscription "ajouter_utilisateur"
+
+2- création et affichage et modifier et supprimer les catégories "categories.php"
+                                                                 "ajouter_categorie.php"
+                                                                 "modifier_categorie.php"
+                                                                 "supprimer_categorie.php"
+
+3- parti liste des produits affichage et modifier et supprimer "produits.php"
+                                                               "ajouter_produit.php"
+                                                               "modifier_produit.php"
+                                                               "supprimer_produit.php"
+
+///////////////////( le site front ) ///////////////////
+  
+
